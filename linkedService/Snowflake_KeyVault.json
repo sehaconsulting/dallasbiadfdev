@@ -1,0 +1,17 @@
+{
+	"name": "Snowflake_KeyVault",
+	"properties": {
+		"annotations": [],
+		"type": "Snowflake",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AKV_Snowflake_JDBC",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "adfdevSnowflakeJDBC"
+			}
+		}
+	}
+}
