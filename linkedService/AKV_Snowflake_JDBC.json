@@ -1,0 +1,10 @@
+{
+	"name": "AKV_Snowflake_JDBC",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://adfdevSnowflake.vault.azure.net/"
+		}
+	}
+}
