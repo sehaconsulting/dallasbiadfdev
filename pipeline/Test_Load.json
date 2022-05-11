@@ -1,0 +1,32 @@
+{
+	"name": "Test_Load",
+	"properties": {
+		"parameters": {
+			"inputsql": {
+				"type": "string",
+				"defaultValue": "select  * from dev.raw.dallasbi where valrange in ('Low', 'High')"
+			},
+			"target": {
+				"type": "string",
+				"defaultValue": "PtGlucose"
+			},
+			"targettype": {
+				"type": "string",
+				"defaultValue": "table"
+			},
+			"stageschema": {
+				"type": "string",
+				"defaultValue": "stage"
+			},
+			"finalschema": {
+				"type": "string",
+				"defaultValue": "final"
+			},
+			"threshold": {
+				"type": "float",
+				"defaultValue": 0.75
+			}
+		},
+		"annotations": []
+	}
+}
