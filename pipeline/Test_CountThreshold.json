@@ -1,0 +1,90 @@
+{
+	"name": "Test_CountThreshold",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeSource",
+						"query": {
+							"value": "@concat(\n'select DIV0(s.s1, f.f1) as t1\nfrom (select count(*) as s1 from '\n, concat(pipeline().parameters.db, '.', pipeline().parameters.stageschema, '.', pipeline().parameters.target)\n, ' ) s\ncross join\n(select count(*) as f1 from '\n, concat(pipeline().parameters.db, '.', pipeline().parameters.finalschema, '.', pipeline().parameters.target)\n,   ' ) f'\n)",
+							"type": "Expression"
+						},
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						}
+					},
+					"dataset": {
+						"referenceName": "Threshold",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(activity('Lookup1').output.firstrow.t1, pipeline().parameters.threshold)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Fail1",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "stage table has less than threshold value of 75% of final",
+								"errorCode": "stage less than final"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"db": {
+				"type": "string",
+				"defaultValue": "dev"
+			},
+			"stageschema": {
+				"type": "string",
+				"defaultValue": "stage"
+			},
+			"finalschema": {
+				"type": "string",
+				"defaultValue": "zfinal"
+			},
+			"threshold": {
+				"type": "float",
+				"defaultValue": 0.75
+			},
+			"target": {
+				"type": "string",
+				"defaultValue": "PtGlucose"
+			}
+		},
+		"annotations": []
+	}
+}
