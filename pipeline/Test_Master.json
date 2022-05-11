@@ -1,0 +1,21 @@
+{
+	"name": "Test_Master",
+	"properties": {
+		"activities": [
+			{
+				"name": "Create Target",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Test_Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}
