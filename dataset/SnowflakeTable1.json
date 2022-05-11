@@ -1,0 +1,59 @@
+{
+	"name": "SnowflakeTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake_Credentials",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "PTID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "PARENTNDEVICEUPLOADSID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "DEVICEDTTM",
+				"type": "VARCHAR",
+				"precision": 160,
+				"scale": 0
+			},
+			{
+				"name": "RECID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "RECORDTYPE",
+				"type": "VARCHAR",
+				"precision": 160,
+				"scale": 0
+			},
+			{
+				"name": "DVALUE",
+				"type": "FLOAT",
+				"precision": 15,
+				"scale": 0
+			},
+			{
+				"name": "VALRANGE",
+				"type": "VARCHAR",
+				"precision": 160,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "RAW",
+			"table": "DALLASBI"
+		}
+	}
+}

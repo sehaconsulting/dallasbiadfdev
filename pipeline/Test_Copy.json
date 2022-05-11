@@ -1,0 +1,128 @@
+{
+	"name": "Test_Copy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 1
+								},
+								"sink": {
+									"name": "PTID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 2
+								},
+								"sink": {
+									"name": "PARENTNDEVICEUPLOADSID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 3
+								},
+								"sink": {
+									"name": "DEVICEDTTM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 4
+								},
+								"sink": {
+									"name": "RECID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 5
+								},
+								"sink": {
+									"name": "RECORDTYPE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 6
+								},
+								"sink": {
+									"name": "DVALUE",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 7
+								},
+								"sink": {
+									"name": "VALRANGE",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
