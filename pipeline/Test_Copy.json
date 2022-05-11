@@ -38,8 +38,8 @@
 						"mappings": [
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 1
+									"name": "PtID",
+									"type": "String"
 								},
 								"sink": {
 									"name": "PTID",
@@ -48,8 +48,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 2
+									"name": "ParentNDeviceUploadsID",
+									"type": "String"
 								},
 								"sink": {
 									"name": "PARENTNDEVICEUPLOADSID",
@@ -58,8 +58,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 3
+									"name": "DeviceDtTm",
+									"type": "String"
 								},
 								"sink": {
 									"name": "DEVICEDTTM",
@@ -68,8 +68,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 4
+									"name": "RecId",
+									"type": "String"
 								},
 								"sink": {
 									"name": "RECID",
@@ -78,8 +78,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 5
+									"name": "RecordType",
+									"type": "String"
 								},
 								"sink": {
 									"name": "RECORDTYPE",
@@ -88,8 +88,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 6
+									"name": "Value",
+									"type": "String"
 								},
 								"sink": {
 									"name": "DVALUE",
@@ -98,8 +98,8 @@
 							},
 							{
 								"source": {
-									"type": "String",
-									"ordinal": 7
+									"name": "ValRange",
+									"type": "String"
 								},
 								"sink": {
 									"name": "VALRANGE",
