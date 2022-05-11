@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "sehaadfdev"
+		},
+		"PtCGM_accountKey": {
+			"value": ""
+		},
+		"PtCGM_properties_typeProperties_url": {
+			"value": "https://accountali.dfs.core.windows.net"
+		},
+		"Snowflake_Credentials_connectionString": {
+			"value": ""
+		},
+		"AKV_Snowflake_JDBC_properties_typeProperties_baseUrl": {
+			"value": "https://adfdevSnowflake.vault.azure.net/"
+		},
+		"Snowflake_KeyVault_properties_typeProperties_connectionString_secretName": {
+			"value": "adfdevSnowflakeJDBC"
+		},
+		"linkedService1_sasUri": {
+			"value": ""
+		}
+	}
+}
