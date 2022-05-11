@@ -29,6 +29,83 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "call test",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "loadsnowflake",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Test_CountThreshold",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"db": {
+							"value": "@pipeline().parameters.db",
+							"type": "Expression"
+						},
+						"stageschema": {
+							"value": "@pipeline().parameters.stageschema",
+							"type": "Expression"
+						},
+						"finalschema": {
+							"value": "@pipeline().parameters.finalschema",
+							"type": "Expression"
+						},
+						"threshold": {
+							"value": "@pipeline().parameters.threshold",
+							"type": "Expression"
+						},
+						"target": {
+							"value": "@pipeline().parameters.target",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "alter table",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "call test",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "Snowflake_KeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": {
+								"value": "@concat('alter table '\n, concat(pipeline().parameters.db, '.', pipeline().parameters.finalschema, '.', pipeline().parameters.target)\n, ' swap with '\n, concat(pipeline().parameters.db, '.', pipeline().parameters.stageschema, '.', pipeline().parameters.target)\n)",
+								"type": "Expression"
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
