@@ -1,0 +1,12 @@
+{
+	"name": "MaxDateInc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake_KeyVault",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": []
+	}
+}
